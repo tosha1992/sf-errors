@@ -1,15 +1,41 @@
-// Задание 3
+//Задание 2
 
-func comparison  (_ valueA: Any, _ valueB: Any) -> Bool {
-    if type (of: valueA) == type (of: valueB) {
-        do {
-        print("Yes")
+enum myErrors: Error {
+    case Error400
+    case Error404
+    case Error500
 }
-        return true;
+
+var Error400: Bool = false
+var Error404: Bool = false
+var Error500: Bool = false
+
+func variableCheck () throws {
+    if Error400 {
+    throw myErrors.Error400
     }
-    do {
-    print("No")
-return false
 }
+    if Error404 {
+    throw myErrors.Error404
 }
+    if Error500 {
+    throw myErrors.Error500
+}
+
+Error404 = true
+
+do {
+    try variableCheck()
+}
+
+catch myErrors.Error400 {
+        print ("Error 400")
+    }
+    catch myErrors.Error404 {
+        print("Error 404")
+    }
+catch myErrors.Error500 {
+    print("Error 500")
+}
+
 
